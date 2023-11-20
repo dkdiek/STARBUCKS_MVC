@@ -18,7 +18,7 @@ public class MainServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println(req.getRequestURL());
 		String uri = req.getRequestURI();
-		if (uri.startsWith("/starbucks/")) {
+		if (-1 < uri.indexOf("/starbucks/")) {
 			StarbucksController.service(req, res);
 		}
 
