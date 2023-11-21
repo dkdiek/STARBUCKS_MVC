@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 <%
@@ -33,10 +34,15 @@
 	<body>
 		<div>
 			<ul>
-				<li><a href="<c:url value='/'/>"><img src="https://cdn-icons-png.flaticon.com/512/8001/8001205.png" width="30px"> HOME</a></li>
+				<li>
+					<a href="<c:url value='/'/>">
+						<img src="https://cdn-icons-png.flaticon.com/512/8001/8001205.png" width="30px"> HOME
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div>
+			<div>
 				<h2>
 					<!-- 메뉴명을 변수에 담아 c:out에서 대문자로 변환 -->
 					<c:set var="upperMenu" value="${menu}" />	
@@ -49,11 +55,10 @@
 			</div>
 			<div>
 				<h3>				
-					결제 금액 : <fmt:formatNumber value="${sum}" pattern="#,###" /> 원
+					결제 금액 : <fmt:formatNumber value="${sum}" type="currency" currencySymbol="" /> 원
 				</h3>
 			</div>
-			<div>
-		
+		<!-- 	
 		<div>
 			<c:forEach begin="1" end="${amount}" varStatus="i">
 				<span style="display: inline-block; text-align: center;">
@@ -70,7 +75,28 @@
 				</span>
 			</c:forEach>
 		</div>
-	
+		 -->
+			<div style="display: flex; flex-wrap: wrap;">
+			    <c:forEach begin="1" end="${amount}" varStatus="i">
+			        <div style="display: inline-block; text-align: center; position: relative; margin: 5px;">
+			            <img src="<c:url value='/images/starbucks/${menu}.jpg'/>"
+			                style="width: 70px;
+			                    <c:if test="${i.count % 10 eq 0}">
+			                        border: 5px double yellow;
+			                    </c:if>
+			                ">
+			            <c:if test="${i.count % 10 eq 0}">
+			                <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: yellow;">
+			                    ${i.count}
+			                </span>
+			            </c:if>
+			        </div>
+			        <c:if test="${i.count % 10 eq 0}">
+			            <br>
+			        </c:if>
+			    </c:forEach>
+			</div>
+
 		<%
 		//	}
 		%>

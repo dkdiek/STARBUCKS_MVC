@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>스타벅스 브릿지 페이지</title>
+	</head>
+	<body>
+		<script>
+			// js로 cp잡기
+			let hostIndex = location.href.indexOf( location.host ) + location.host.length; //16자
+			let contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) ); //로컬호스트 cp
+                
+			// js로 cp잡아서 바로 index.star로 보내기
+			location.href = contextPath + '/index.star';
+		</script>
+	</body>
+</html>

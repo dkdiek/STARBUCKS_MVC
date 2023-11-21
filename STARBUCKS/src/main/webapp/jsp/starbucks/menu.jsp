@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
  
 
 <!DOCTYPE html>
@@ -31,7 +32,11 @@
 	<body>
 		<div>
 			<ul>
-				<li><a href="<c:url value='/'/>"><img src="https://static.vecteezy.com/system/resources/previews/010/157/862/non_2x/house-and-home-icon-symbol-sign-free-png.png" width="30px"> HOME</a></li>
+				<li>
+					<a href="<c:url value='/'/>">
+						<img src="https://static.vecteezy.com/system/resources/previews/010/157/862/non_2x/house-and-home-icon-symbol-sign-free-png.png" width="30px"> HOME
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div>
@@ -60,7 +65,7 @@
 			<input type="hidden" id="amount" name="amount">
 		</form>
 		
-		<script src="<c:url value='/js/starbucks_menu.js'/>"></script>
+		<script defer src="<c:url value='/js/starbucks_menu.js'/>"></script>
 		
 	</body>
 </html>
