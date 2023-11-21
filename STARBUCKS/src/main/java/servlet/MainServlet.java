@@ -18,8 +18,10 @@ public class MainServlet extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println(req.getRequestURL());
+		System.out.println("요청 URL : " + req.getRequestURL());
+		
 		String uri = req.getRequestURI();
+		
 		if (-1 < uri.indexOf("/index.star")) {
 			IndexController.service(req, res);
 		}
