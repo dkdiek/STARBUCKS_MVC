@@ -1,19 +1,21 @@
 package index.model;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class IndexModel {
 	
-	public static void checkSession(HttpServletRequest req){
+	public static boolean checkSession(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		HttpSession session = req.getSession();
 		Object unObj = session.getAttribute("userName");
-		// null이면 캐스팅 예외 발생 방지
-		String userName = "";
-		if ( null != unObj) {
-			userName = (String)unObj;
+		// 세션이 없으면 index로 보내버림
+		if ( null == unObj) {
+			return false;
+		} else {
+			return true;
 		}
-		req.setAttribute("userName", userName);
 	}
-
 }

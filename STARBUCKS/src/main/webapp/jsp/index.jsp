@@ -9,73 +9,69 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>스타벅스</title>
-		
-		<style>
-			body {
-				background-color: #00704A;
-				color: white;
-				display : flex;
-				justify-content: center; /* 수평 가운데 정렬 */
-  				align-items: center;
-				flex-direction: column; /* 세로로 나란히 정렬되도록 설정 */
-  				
-			}
-			ul{
-				display : flex;
-				justify-content: center; /* 수평 가운데 정렬 */
-			}
-			li {
-			
-			}
-			ul li {
-    align-self: center;
-}
-			
-			a {
-				text-decoration: none;
-			}
-			
-			a:visited {
-				color: white; /* 방문한 후에도 글자색을 보라색으로 유지 */
-			}
-			div{
-				display:flex;
-				justify-content: center; /* 수평 가운데 정렬 */
-  				align-items: center;
-
-			}
-		</style>
+    	<link rel="stylesheet" href="<c:url value='/css/index.css'/>">
+    	
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<div>
-			<h1>스타벅스에 오신걸 환영합니다</h1>
+				
+		<div id="indexTop">
+			<div>
+				<img style="width: 100px" src="https://t1.daumcdn.net/cfile/tistory/99857F4F5E738F472F">
+			</div>
+			<div>
+				<h1>스타벅스에 오신걸 환영합니다</h1>
+			</div>
 		</div>
+		
 		<!-- 유저네임 없을때만 로그인창 나오도록 -->
 		<c:if test="${ null eq sessionScope.userName }">
+			<!-- 아이디, 비밀번호 틀렸을때 메세지 출력 -->			
+    		<div>
+        		<span style="color: yellow">${msg}</span>
+    		</div>
+			
 			<div>
-				<form id="loginForm" method="post" action="<c:url value='/login.star'/>">
-					<input type="text" name="userId" placeholder="아이디"><br>
-					<input type="text" name="userPw" placeholder="암호"><br>
-					<input type="button" onclick="submitForm('loginForm')" id="loginButton" value="로그인">
+				<form id="frmLogin" method="post" action="<c:url value='/login.star'/>">
+					<input type="text" name="userId" id="userId" placeholder="아이디"><br>
+					<input type="password" name="userPw"  id="userPw" placeholder="암호"><br>
+					<input type="button" class="common-button" onclick="submitForm('frmLogin')" id="loginButton" value="로그인">
 				</form>
 			</div>
 		</c:if>
+	
 		
 		<!-- 유저네임 있을때만 메뉴가 나오도록 -->
 		<c:if test="${ null ne sessionScope.userName }">
-			<div>
-				<span>${userName}님 로그인 중</span>
+			
+			<div class="welcomeContainer">
+				  <img src="<c:url value='/images/index/welcome.jpg'/>" alt="welcome">
+				  <div class="centered">
+						${userName} 님 환영합니다!
+				  </div>
 			</div>
 			
 			<div>
-				<form id="logoutForm" method="post" action="<c:url value='/logout.star'/>">
-					<input type="button" onclick="submitForm('logoutForm')" id="logoutButton" value="로그아웃">
+				<form id="frmLogout" method="post" action="<c:url value='/logout.star'/>">
+					<input type="button" class="common-button" onclick="submitForm('frmLogout');  clearLoginForm();" id="logoutButton" value="로그아웃">
 				</form>
 			</div>
 			
 			<div>
 				<ul>
-					<li><a href="<c:url value='/starbucks/menu.star'/>">메뉴 주문하기</a></li>
+					<!--
+					 <li><a href="<c:url value='/starbucks/menu.star'/>">메뉴 주문하기</a></li>
+					 -->
+					 <li>
+					    <form action="<c:url value='/starbucks/menu.star'/>" method="post">
+					        <button type="submit" class="menu-button">메뉴 주문하기</button>
+					    </form>
+					    <form action="http://starbucks.co.kr" method="post">
+					        <button type="submit" class="menu-button">홈페이지</button>
+					    </form>
+					</li>
 				</ul>
 			</div>
 		</c:if>

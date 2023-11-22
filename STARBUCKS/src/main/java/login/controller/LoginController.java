@@ -14,22 +14,24 @@ public class LoginController {
 		String uri = req.getRequestURI();
 		
 		if (-1 < uri.indexOf("/login.star")) {
-			LoginModel.checkUser(req);
+			LoginModel.login(req, res);
 			res.setContentType("text/html;charset=UTF-8");
-			//req.getRequestDispatcher("/jsp/index.jsp").forward(req, res);
+			//포워딩 처리
+			req.getRequestDispatcher("/jsp/index.jsp").forward(req, res);
 
-			//리다이렉트 처리해서 index.star로 url 보이게 함
-			res.sendRedirect(req.getContextPath() + "/index.star");
+			//리다이렉트 처리해서 index.star로 url 보이게 함(리다이렉트하면 index.jsp에서 msg값 없어짐)
+			//res.sendRedirect(req.getContextPath() + "/index.star");
 
 		}
 		
 		if (-1 < uri.indexOf("/logout.star")) {
-			LoginModel.logout(req);
+			LoginModel.logout(req, res);
 			res.setContentType("text/html;charset=UTF-8");
-			// req.getRequestDispatcher("/jsp/index.jsp").forward(req, res);
+			//포워딩 처리
+			req.getRequestDispatcher("/jsp/index.jsp").forward(req, res);
 
-			//리다이렉트 처리해서 index.star로 url 보이게 함
-			res.sendRedirect(req.getContextPath() + "/index.star");
+			//리다이렉트 처리해서 index.star로 url 보이게 함(리다이렉트하면 index.jsp에서 msg값 없어짐)
+			//res.sendRedirect(req.getContextPath() + "/index.star");
 		}
 	
 	}
