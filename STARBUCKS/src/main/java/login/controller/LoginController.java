@@ -1,6 +1,8 @@
 package login.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,12 @@ public class LoginController {
 		
 		if (-1 < uri.indexOf("/login.star")) {
 			LoginModel.login(req, res);
+			
+			//로그인 시간 세션에 저장
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedLoginTime = sdf.format(new Date());
+            req.getSession().setAttribute("formattedLoginTime", formattedLoginTime);
+
 			res.setContentType("text/html;charset=UTF-8");
 			//포워딩 처리
 			req.getRequestDispatcher("/jsp/index.jsp").forward(req, res);

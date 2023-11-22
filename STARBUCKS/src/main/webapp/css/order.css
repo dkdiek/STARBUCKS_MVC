@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+body {
+	background-color: #1e3932;
+	color: white;
+	display: flex;
+	justify-content: center;
+	/* 수평 가운데 정렬 */
+	align-items: center;
+	flex-direction: column;
+	/* 세로로 나란히 정렬되도록 설정 */
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+#logo {
+	margin-top: 190px;
+	width: 100px;
+}
+
+#top-info{
+	display: flex;
+	justify-content: center;
+	/* 수평 가운데 정렬 */
+	align-items: center;
+	flex-direction: column;
+}
+
+#order-info{
+	font-size: 40px;
+	color: yellow;
+}

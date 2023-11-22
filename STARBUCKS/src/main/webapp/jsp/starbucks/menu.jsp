@@ -9,37 +9,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>스타벅스</title>
-		<link href="<c:url value='/css/starbucks.css'/>" rel="stylesheet">
-		<style>
-			body {
-				background-color: #00704A;
-				color: white;
-			}
-			
-			li {
-				list-style: none;
-			}
-			
-			a {
-				text-decoration: none;
-			}
-			
-			a:visited {
-				color: white; /* 방문한 후에도 글자색을 보라색으로 유지 */
-			}
-		</style>
+		<link href="<c:url value='/css/menu.css'/>" rel="stylesheet">
+		
+		<!-- Google web font -->
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&display=swap" rel="stylesheet">
+
 	</head>
 	<body>
 		<div>
-			<ul>
-				<li>
-					<a href="<c:url value='/'/>">
-						<img src="https://static.vecteezy.com/system/resources/previews/010/157/862/non_2x/house-and-home-icon-symbol-sign-free-png.png" width="30px"> HOME
-					</a>
-				</li>
-			</ul>
+			<a href="<c:url value='/'/>">
+				<img id="logo" src="<c:url value='/images/common/logo.png'/>">
+			</a>
 		</div>
-		<div>
+			<h1>메뉴를 선택하고 수량을 입력하세요</h1>
+		<div id="menu-images">
 			<span>
 				<img class="menuImg" data-menu="cake" src="<c:url value='/images/starbucks/cake.jpg'/>">
 			</span>
@@ -52,7 +37,7 @@
 		</div>
 		<div>
 			<span>
-				<input type="number" id="count" value="1">개
+				<input type="number" id="count" value="1"> 개
 			</span>
 		</div>
 		<div>

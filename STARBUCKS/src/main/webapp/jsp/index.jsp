@@ -10,7 +10,7 @@
 		<meta charset="UTF-8">
 		<title>스타벅스</title>
     	<link rel="stylesheet" href="<c:url value='/css/index.css'/>">
-    	
+    	<!-- Google web font -->
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
 				
 		<div id="indexTop">
 			<div>
-				<img style="width: 100px" src="https://t1.daumcdn.net/cfile/tistory/99857F4F5E738F472F">
+				<img id="logo" src="<c:url value='/images/common/logo.png'/>">
 			</div>
 			<div>
 				<h1>스타벅스에 오신걸 환영합니다</h1>
@@ -28,9 +28,15 @@
 		
 		<!-- 유저네임 없을때만 로그인창 나오도록 -->
 		<c:if test="${ null eq sessionScope.userName }">
-			<!-- 아이디, 비밀번호 틀렸을때 메세지 출력 -->			
     		<div>
-        		<span style="color: yellow">${msg}</span>
+				<!-- 아이디, 비밀번호 틀렸을때 메세지 출력 -->			
+    			<c:if test="${msg ne null}">
+        			<span class="loginInform" style="color: yellow">${msg}</span>
+				<!-- 처음 접속 시 표시 -->			
+        		</c:if>
+        		<c:if test="${msg eq null}">
+        			<span class="loginInform">회원 정보를 입력하세요</span>
+        		</c:if>
     		</div>
 			
 			<div>
@@ -49,7 +55,8 @@
 			<div class="welcomeContainer">
 				  <img src="<c:url value='/images/index/welcome.jpg'/>" alt="welcome">
 				  <div class="centered">
-						${userName} 님 환영합니다!
+						${userName}님 접속 중<br>
+						로그인: ${sessionScope.formattedLoginTime}
 				  </div>
 			</div>
 			
@@ -59,21 +66,15 @@
 				</form>
 			</div>
 			
-			<div>
-				<ul>
-					<!--
-					 <li><a href="<c:url value='/starbucks/menu.star'/>">메뉴 주문하기</a></li>
-					 -->
-					 <li>
-					    <form action="<c:url value='/starbucks/menu.star'/>" method="post">
-					        <button type="submit" class="menu-button">메뉴 주문하기</button>
-					    </form>
-					    <form action="http://starbucks.co.kr" method="post">
-					        <button type="submit" class="menu-button">홈페이지</button>
-					    </form>
-					</li>
-				</ul>
+			<div class="menu">
+			    <form action="<c:url value='/starbucks/menu.star'/>" method="post">
+			        <button type="submit" class="menu-button">메뉴 주문하기</button>
+			    </form>
+			    <form action="http://starbucks.co.kr" method="post">
+			        <button type="submit" class="menu-button">홈페이지</button>
+			    </form>
 			</div>
+			
 		</c:if>
 		
 		<script defer src="<c:url value='/js/index.js'/>"></script>

@@ -16,7 +16,7 @@ public class LoginModel {
 			req.getSession().setAttribute("userName", "홍길동");
 			CookieMaker.makeCookie(res);
 		} else {
-			req.setAttribute("msg", "아이디 또는 비밀번호를 다시 확인해 주세요.");
+			req.setAttribute("msg", "아이디 또는 비밀번호를 다시 확인해 주세요");
 			//req.getSession().removeAttribute("userName");
 		}
 	}
@@ -24,6 +24,10 @@ public class LoginModel {
 	public static void logout(HttpServletRequest req, HttpServletResponse res) {
 		// 세션에서 userName 속성 제거
 		req.getSession().removeAttribute("userName");
+		
+		// 세션에서 loginTime 속성 제거
+	    req.getSession().removeAttribute("formattedLoginTime");
+	    
 		// 쿠키 지우기
 		CookieMaker.removeCookie(res);
 	}
