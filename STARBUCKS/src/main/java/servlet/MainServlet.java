@@ -29,14 +29,12 @@ public class MainServlet extends HttpServlet {
 		}
 		
 		if (-1 < uri.indexOf("/starbucks/")) {
-			boolean hasSession = IndexModel.checkSession(req, res);
-			if(hasSession) {
-				StarbucksController.service(req, res);
-			} else {
-				// 세션이 없으면 인덱스로 날림
-				res.sendRedirect("/index.star");
-			}
-		}
+			StarbucksController.service(req, res);
+			/*
+			 * boolean hasSession = IndexModel.checkSession(req); if(hasSession) {
+			 * StarbucksController.service(req, res); } else { // 세션이 없으면 인덱스로 날림
+			 * res.sendRedirect("/index.star"); }
+			 */		}
 		
 		if (-1 < uri.indexOf("/login.star")) {
 			LoginController.service(req, res);

@@ -45,11 +45,11 @@
 				</h3>
 			</div>
 			
-			<div style="display: flex; flex-wrap: wrap;">
+			<div id="image-group" style="display: flex; flex-wrap: wrap;">
 			    <c:forEach begin="1" end="${amount}" varStatus="i">
 			        <div style="display: inline-block; text-align: center; position: relative; margin: 5px;">
 			            <img src="<c:url value='/images/starbucks/${menu}.jpg'/>"
-			                style="width: 70px;
+			                style="width: 100px;
 			                    <c:if test="${i.count % 10 eq 0}">
 			                        border: 5px double yellow;
 			                    </c:if>

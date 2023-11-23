@@ -29,3 +29,11 @@ body {
 	font-size: 40px;
 	color: yellow;
 }
+
+#image-group {
+/*     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  수평 가운데 정렬 
+    margin: 0 auto;  가운데 정렬을 위한 margin 설정 
+*/    width: 1110px;
+}

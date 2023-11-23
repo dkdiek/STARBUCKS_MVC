@@ -18,8 +18,13 @@ function removeBorderStyle() {
 
 // 폼 보내기
 document.getElementById('btnOrder').addEventListener('click', function() {
-	document.getElementById('amount').value = document.getElementById('count').value;
-	document.getElementById('orderForm').submit();
+    if (document.getElementById('menu').value.trim() === '') {
+        // 이미지가 선택되지 않은 경우
+        alert('메뉴를 선택은 필수입니다');
+    } else {
+        document.getElementById('amount').value = document.getElementById('count').value;
+        document.getElementById('orderForm').submit();
+    }
 });
 
 // 정규 표현식을 사용하여 3자리마다 콤마를 추가합니다.

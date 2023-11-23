@@ -10,6 +10,8 @@
 		<meta charset="UTF-8">
 		<title>스타벅스</title>
     	<link rel="stylesheet" href="<c:url value='/css/index.css'/>">
+    	<!-- popup css -->
+    	<link rel="stylesheet" href="<c:url value='/css/popup.css'/>">
     	<!-- Google web font -->
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,6 +79,69 @@
 			
 		</c:if>
 		
+		
+		<!-- 팝업 -->
+		<div id="popup_layer" style="display: none">
+		  <div class="popup_box">
+		      <!--팝업 컨텐츠 영역-->
+		      <div class="popup_cont">
+		          <h2>BlackFridayGift</h2>
+		          <span>
+					<img id="imgBlackFridayGift">
+				  </span>
+		      </div>
+		      <!--팝업 버튼 영역-->
+		      <div class="popup_btn">
+		          <!--하루동안 보지않기-->
+		          <a id="chk_today" href="javascript:closeToday();" class="close_day">접속 동안 보지 않기</a> 
+		          <!--7일간 보지않기-->
+		          <!-- <a id="chk_today" href="javascript:closeToday();" class="close_day">Do not open for 7 days</a>-->
+		          <a href="javascript:closePop();">닫기</a>
+		      </div>
+		  </div>
+		</div>
+		
+		<script id="popup">
+		
+			//쿠키
+			let getCookie = function(name) {
+				var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+				return value ? value[2] : null;
+			};
+			console.log(getCookie('BlackFridayGift'));
+	
+	
+			//팝업
+			
+			//닫기
+			let closePop = function() {
+				document.getElementById("popup_layer").style.display = "none";
+			};
+			
+			// 기간설정
+		  	function setCookie(name, value, expiredays) {
+            let todayDate = new Date();
+            todayDate.setDate(todayDate.getDate() + expiredays);
+            document.cookie = name + "=" + value + "; path=/; expires=" + todayDate.toUTCString() + ";";
+        }
+			
+			//오늘하루만보기 닫기버튼 스크립트
+			function closeToday() {
+				// 쿠키 유효시간을 0으로 바꾸
+				setCookie( "BlackFridayGift", "cookie" , 0  ); 
+				//document.getElementById("popup_layer").style.display = "none";
+			}
+	
+			// 로그인한 후에 쿠키가 존재하면 팝업을 보이도록 설정
+			let blackFridayGift = getCookie('BlackFridayGift');
+			if (null != blackFridayGift) {
+				document.getElementById("popup_layer").style.display = "block";
+				document.getElementById("imgBlackFridayGift").src
+					= "<c:url value='/images/popup/" + blackFridayGift + ".jpg'/>"
+			}
+		</script>
+		
 		<script defer src="<c:url value='/js/index.js'/>"></script>
+		
 	</body>
 </html>
