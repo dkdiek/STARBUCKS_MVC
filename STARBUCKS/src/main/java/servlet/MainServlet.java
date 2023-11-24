@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import file.controller.FileController;
 import index.controller.IndexController;
-import index.model.IndexModel;
 import login.controller.LoginController;
 import starbucks.controller.StarbucksController;
 
@@ -42,6 +42,9 @@ public class MainServlet extends HttpServlet {
 		
 		if (-1 < uri.indexOf("/logout.star")) {
 			LoginController.service(req, res);
+		}
+		if (-1 < uri.indexOf("/file/")) {
+			FileController.service(req, res);
 		}
 
 	}

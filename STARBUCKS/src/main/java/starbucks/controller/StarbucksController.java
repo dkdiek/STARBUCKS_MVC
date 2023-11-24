@@ -12,6 +12,7 @@ public class StarbucksController {
 
 	public static void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String uri = req.getRequestURI();
+		// 인덱스 0부터 시작 즉 -1 =없음
 		if (-1 < uri.indexOf("/menu.star")) {
 			req.getRequestDispatcher("/jsp/starbucks/menu.jsp").forward(req, res);
 		}
