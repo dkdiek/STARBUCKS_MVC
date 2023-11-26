@@ -102,6 +102,6 @@
 		</div>
 		
 		<script defer src="<c:url value='/js/index.js'/>"></script>
-		
+		<script defer src="<c:url value='/js/common/snow_effect.js'/>"></script>
 	</body>
 </html>

@@ -77,5 +77,6 @@
 	</script>
 	<!-- 스크립트 임포트 -->
 	<script defer src="<c:url value='/js/file/main.js'/>" ></script>
+	
 </body>
 </html>
