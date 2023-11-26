@@ -18,11 +18,13 @@
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&display=swap" rel="stylesheet">
 	</head>
 	<body>
+	<!-- 눈 효과 -->
+	<canvas id='canv'></canvas>
 				
 		<div id="indexTop">
-			<div>
+			<a href="<c:url value='/'/>">
 				<img id="logo" src="<c:url value='/images/common/logo.png'/>">
-			</div>
+			</a>
 			<div>
 				<h1>스타벅스에 오신걸 환영합니다</h1>
 			</div>
@@ -73,76 +75,31 @@
 			        <button type="submit" class="menu-button">메뉴 주문하기</button>
 			    </form>
 			    <form action="<c:url value='/file/main.star'/>" method="post">
-			        <button type="submit" class="menu-button">클라우드</button>
+			        <button type="submit" class="menu-button">My 클라우드</button>
 			    </form>
-			    <form action="http://starbucks.co.kr" method="post">
-			        <button type="submit" class="menu-button">홈페이지</button>
+			    <form action="http://starbucks.co.kr" method="post" target="_blank">
+			        <button type="submit" class="menu-button">STARBUCKS.co.kr</button>
 			    </form>
 			</div>
 			
 		</c:if>
 		
-		
 		<!-- 팝업 -->
-		<div id="popup_layer" style="display: none">
+		<div id="popup_layer" style="display: none;">
 		  <div class="popup_box">
 		      <!--팝업 컨텐츠 영역-->
 		      <div class="popup_cont">
-		          <h2>BlackFridayGift</h2>
-		          <span>
+		         <!-- <h2>BlackFridayGift</h2>  -->
 					<img id="imgBlackFridayGift">
-				  </span>
 		      </div>
 		      <!--팝업 버튼 영역-->
 		      <div class="popup_btn">
 		          <!--하루동안 보지않기-->
-		          <a id="chk_today" href="javascript:closeToday();" class="close_day">접속 동안 보지 않기</a> 
-		          <!--7일간 보지않기-->
-		          <!-- <a id="chk_today" href="javascript:closeToday();" class="close_day">Do not open for 7 days</a>-->
+		          <a id="chk_today" href="javascript:closeToday();" class="close_day">로그아웃까지 팝업 숨기기</a> 
 		          <a href="javascript:closePop();">닫기</a>
 		      </div>
 		  </div>
 		</div>
-		
-		<script id="popup">
-		
-			//쿠키
-			let getCookie = function(name) {
-				var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-				return value ? value[2] : null;
-			};
-			console.log(getCookie('BlackFridayGift'));
-	
-	
-			//팝업
-			
-			//닫기
-			let closePop = function() {
-				document.getElementById("popup_layer").style.display = "none";
-			};
-			
-			// 기간설정
-		  	function setCookie(name, value, expiredays) {
-            let todayDate = new Date();
-            todayDate.setDate(todayDate.getDate() + expiredays);
-            document.cookie = name + "=" + value + "; path=/; expires=" + todayDate.toUTCString() + ";";
-        }
-			
-			//오늘하루만보기 닫기버튼 스크립트
-			function closeToday() {
-				// 쿠키 유효시간을 0으로 바꾸
-				setCookie( "BlackFridayGift", "cookie" , 0  ); 
-				//document.getElementById("popup_layer").style.display = "none";
-			}
-	
-			// 로그인한 후에 쿠키가 존재하면 팝업을 보이도록 설정
-			let blackFridayGift = getCookie('BlackFridayGift');
-			if (null != blackFridayGift) {
-				document.getElementById("popup_layer").style.display = "block";
-				document.getElementById("imgBlackFridayGift").src
-					= "<c:url value='/images/popup/" + blackFridayGift + ".jpg'/>"
-			}
-		</script>
 		
 		<script defer src="<c:url value='/js/index.js'/>"></script>
 		

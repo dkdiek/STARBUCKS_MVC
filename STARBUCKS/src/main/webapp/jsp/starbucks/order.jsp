@@ -15,7 +15,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>스타벅스</title>
-		<link href="<c:url value='/css/order.css'/>" rel="stylesheet">
+		<link href="<c:url value='/css/starbucks/order.css'/>" rel="stylesheet">
 		
 		<!-- Google web font -->
     	<link rel="preconnect" href="https://fonts.googleapis.com">

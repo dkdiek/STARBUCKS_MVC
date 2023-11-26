@@ -29,7 +29,6 @@ public class LoginController {
 
 			//리다이렉트 처리해서 index.star로 url 보이게 함(리다이렉트하면 index.jsp에서 msg값 없어짐)
 			//res.sendRedirect(req.getContextPath() + "/index.star");
-
 		}
 		
 		if (-1 < uri.indexOf("/logout.star")) {

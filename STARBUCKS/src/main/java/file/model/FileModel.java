@@ -1,8 +1,12 @@
 package file.model;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
@@ -37,38 +41,18 @@ public class FileModel {
 
 	}
 
-	/*
-	 * public static void download(HttpServletRequest req, HttpServletResponse res)
-	 * throws IOException {
-	 * 
-	 * String downloadFileName = req.getParameter("downloadFileName");
-	 * //octet-stream은 모든 파일
-	 * res.setContentType("application/octet-stream; charset=UTF-8");
-	 * 
-	 * res.setHeader("Content-disposition", "attachment; filename=" +
-	 * URLEncoder.encode(downloadFileName, "UTF-8"));
-	 * 
-	 * try(InputStream in = req.getServletContext().getResourceAsStream("/download/"
-	 * + downloadFileName); ServletOutputStream out = res.getOutputStream()) {
-	 * byte[] buffer = new byte[4096]; int numBytesRead; while ((numBytesRead =
-	 * in.read(buffer)) > 0) { out.write(buffer, 0, numBytesRead); } }
-	 * 
-	 * }
-	 */
-
 	public static void download(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String downloadFileName = req.getParameter("downloadFileName");
 		res.setContentType("application/octet-stream");
 		String enDownloadFileName = new String(downloadFileName.getBytes("UTF-8"), "ISO-8859-1");
 
-		
-		//String enDownloadFileName = URLEncoder.encode(downloadFileName, "UTF-8");
-		
+		// 한글 파일명을 디코딩
+		String decodedFileName = URLDecoder.decode(enDownloadFileName, "UTF-8");
+
 		// octet-stream은 모든 파일
 		res.setHeader("Content-disposition", "attachment; filename=" + enDownloadFileName);
-		
 
-		try (InputStream in = req.getServletContext().getResourceAsStream("/download/" + enDownloadFileName);
+		try (InputStream in = req.getServletContext().getResourceAsStream("/download/" + decodedFileName);
 				ServletOutputStream out = res.getOutputStream()) {
 			byte[] buffer = new byte[4096];
 			int numBytesRead;
@@ -77,5 +61,39 @@ public class FileModel {
 			}
 		}
 	}
+	
+	public static void getDownloadFileList(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	    File downloadFolder = new File(req.getServletContext().getRealPath("/download"));
 
+	    // 에러 처리: 디렉토리 존재 여부 확인
+	    if (!downloadFolder.exists() || !downloadFolder.isDirectory()) {
+	        res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Download directory not found.");
+	        return;
+	    }
+
+	    File[] files = downloadFolder.listFiles();
+
+	    List<String> fileList = new ArrayList<>();
+	    if (files != null) {
+	        // 에러 처리: 파일 목록 정렬
+	        Arrays.sort(files);
+
+	        for (File file : files) {
+	            // 파일의 이름과 확장자 추출
+	            String fileName = file.getName();
+
+	            // 파일명에서 경로 부분 제외하고 추가
+	            fileList.add(fileName);
+	        }
+	    }
+
+	    // 파일 목록을 request에 저장
+	    req.setAttribute("fileList", fileList);
+	}
+
+
+	
+	
+	
 }
+

@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>스타벅스</title>
-		<link href="<c:url value='/css/menu.css'/>" rel="stylesheet">
+		<link href="<c:url value='/css/starbucks/menu.css'/>" rel="stylesheet">
 		
 		<!-- Google web font -->
     	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
 			<input type="hidden" id="amount" name="amount">
 		</form>
 		
-		<script defer src="<c:url value='/js/starbucks_menu.js'/>"></script>
+		<script defer src="<c:url value='/js/starbucks/starbucks_menu.js'/>"></script>
 		
 	</body>
 </html>

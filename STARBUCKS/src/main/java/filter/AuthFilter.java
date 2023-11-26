@@ -22,13 +22,15 @@ public class AuthFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest req1, ServletResponse res1, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest req1, ServletResponse res1, FilterChain chain) throws IOException, ServletException {
 		String[] menuArr = { "/starbucks/", "/ediya/" };
 		HttpServletRequest req = (HttpServletRequest) req1;
 		String uri = req.getRequestURI();
+		
 		System.out.println("AuthFilter:" + uri);
+		
 		boolean redirectFlag = false;
+		
 		for (int i = 0; i < menuArr.length; i++) {
 			String authUri = menuArr[i];
 			if (uri.startsWith(authUri)) {
