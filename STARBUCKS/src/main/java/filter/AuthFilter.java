@@ -23,7 +23,7 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req1, ServletResponse res1, FilterChain chain) throws IOException, ServletException {
-		String[] menuArr = { "/starbucks/", "/ediya/" };
+		String[] menuArr = { "/starbucks/", "/file/" };
 		HttpServletRequest req = (HttpServletRequest) req1;
 		String uri = req.getRequestURI();
 		
