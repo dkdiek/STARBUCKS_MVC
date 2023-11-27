@@ -14,8 +14,6 @@ public class FileController {
 		
 		String uri = req.getRequestURI();
 		if ( -1 < uri.indexOf("/main.star") ) {
-			//다운로드 폴더에 파일들을 어레이리스트에 담에 리퀘스트에 저장 메소드
-			FileModel.getDownloadFileList(req,res);
 			req.getRequestDispatcher("/jsp/file/main.jsp").forward(req, res);
 		}
 		if ( -1 < uri.indexOf("/upload.star") ) {

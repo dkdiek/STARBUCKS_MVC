@@ -13,6 +13,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -20,7 +21,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
  * http://servlets.com/cos/
  */
 public class FileModel {
-
+	
+	// 업로드 메소드
 	public static void upload(HttpServletRequest req) throws IOException {
 		// 여기를 바꿔주면 다운받는 경로가 바뀜
 		String savePath = "upload";
@@ -38,9 +40,9 @@ public class FileModel {
 				encType, // 인코딩 방법
 				// 동일한 이름이 존재하면 새로운 이름이 부여됨
 				new DefaultFileRenamePolicy());
-
 	}
-
+	
+	// 다운로드 메소드
 	public static void download(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String downloadFileName = req.getParameter("downloadFileName");
 		res.setContentType("application/octet-stream");
@@ -62,6 +64,7 @@ public class FileModel {
 		}
 	}
 	
+	// download 폴더 파일명 json 배열로 생성
 	public static void getDownloadFileList(HttpServletRequest req, HttpServletResponse res) throws IOException {
 	    File downloadFolder = new File(req.getServletContext().getRealPath("/download"));
 
@@ -86,13 +89,15 @@ public class FileModel {
 	            fileList.add(fileName);
 	        }
 	    }
-
-	    // 파일 목록을 request에 저장
-	    req.setAttribute("fileList", fileList);
+	    
+	    // 파일 목록을 gson 라이브러리를 이용해서 JSON으로 변환
+	    Gson gson = new Gson();
+	    String jsonFileList = gson.toJson(fileList);
+	    
+	    res.setContentType("application/json");
+	    res.setCharacterEncoding("UTF-8");
+	    res.getWriter().write(jsonFileList);
 	}
-
-
-	
 	
 	
 }

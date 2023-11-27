@@ -7,32 +7,49 @@ document.getElementById('btnUpload').addEventListener('click', function() {
 });
 
 
+
 // 다운로드 -------------------------------------------------------------------------------------------
 // DOMContentLoaded- HTML 문서의 모든 초기 HTML 및 스타일이 완전히 로드되고 파싱된 후에 발생하는 이벤트
 document.addEventListener('DOMContentLoaded', function() {
+    // 파일 목록을 가져오는 함수(자바 메소드에서 json 배열 가져오기)
+    async function getDownloadFileList() {
+        try {
+            const response = await fetch('/getDownloadFileList.star');
+            const fileList = await response.json();
 
-    // ulDownload에 동적으로 li 요소 추가
-    const ulDownload = document.getElementById('ulDownload');
-    fileList.forEach(fileName => {
-        const li = document.createElement('li');
-        li.dataset.fileName = fileName;
+            // 파일 목록을 이용하여 처리하는 함수 호출
+            handleFileList(fileList);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
-        // 한글 파일명 인코딩
-        const encodedFileName = encodeURIComponent(fileName);
+    // 파일 목록을 처리하는 함수
+    function handleFileList(fileList) {
+        const ulDownload = document.getElementById('ulDownload');
+        
+        fileList.forEach(fileName => {
+            const li = document.createElement('li');
+            li.dataset.fileName = fileName;
 
-        // 한글 파일명으로 표시
-        li.textContent = `${fileName}`;
+            // 한글 파일명 인코딩
+            const encodedFileName = encodeURIComponent(fileName);
 
-        li.addEventListener('click', function() {
-            document.getElementById('downloadFileName').value = encodedFileName;
-            document.getElementById('frmDownload').submit();
+            // li에 파일명 표시
+            li.textContent = `${fileName}`;
+
+            li.addEventListener('click', function() {
+                document.getElementById('downloadFileName').value = encodedFileName;
+                document.getElementById('frmDownload').submit();
+            });
+
+            ulDownload.appendChild(li);
         });
+    }
 
-        ulDownload.appendChild(li);
-    });
-
+    // 페이지 로드 시 파일 목록을 가져오기
+    getDownloadFileList();
 });
-
 
 // 인풋 초기화-------------------------------------------------------------------------------------------
 document.getElementById('btnReset').addEventListener('click', function() {
