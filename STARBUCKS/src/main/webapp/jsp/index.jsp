@@ -16,6 +16,7 @@
     	<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@600&display=swap" rel="stylesheet">
+		<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	</head>
 	<body>
 	<!-- 눈 효과 -->
