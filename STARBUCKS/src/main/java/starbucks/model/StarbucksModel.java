@@ -1,6 +1,14 @@
 package starbucks.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 
 public class StarbucksModel {
 
@@ -23,4 +31,6 @@ public class StarbucksModel {
 		req.setAttribute("amount", Integer.parseInt(amount));
 		req.setAttribute("sum", String.valueOf(sum));
 	}
+
+	
 }
