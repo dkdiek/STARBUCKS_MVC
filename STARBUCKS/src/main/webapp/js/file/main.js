@@ -9,46 +9,45 @@ document.getElementById('btnUpload').addEventListener('click', function() {
 
 
 // 다운로드 -------------------------------------------------------------------------------------------
-// DOMContentLoaded- HTML 문서의 모든 초기 HTML 및 스타일이 완전히 로드되고 파싱된 후에 발생하는 이벤트
+/*DOMContentLoaded- HTML 문서의 모든 초기 HTML 및 스타일이 완전히 로드되고 파싱된 후에 발생하는 이벤트
+파일 목록을 가져오는 함수(자바 메소드에서 json 배열 가져오기)*/
+
 document.addEventListener('DOMContentLoaded', function() {
-    // 파일 목록을 가져오는 함수(자바 메소드에서 json 배열 가져오기)
-    async function getDownloadFileList() {
-        try {
-            const response = await fetch('/getDownloadFileList.star');
-            const fileList = await response.json();
+	async function getDownloadFileList() {
+		try {
+			const response = await fetch('/getDownloadFileList.star');
+			const fileList = await response.json();
 
-            // 파일 목록을 이용하여 처리하는 함수 호출
-            handleFileList(fileList);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }
+			// 파일 목록을 이용하여 처리하는 함수 호출
+			handleFileList(fileList);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	}
 
-    // 파일 목록을 처리하는 함수
-    function handleFileList(fileList) {
-        const ulDownload = document.getElementById('ulDownload');
-        
-        fileList.forEach(fileName => {
-            const li = document.createElement('li');
-            li.dataset.fileName = fileName;
+	// 파일 목록을 처리하는 함수
+	function handleFileList(fileList) {
+		const ulDownload = document.getElementById('ulDownload');
 
-            // 한글 파일명 인코딩
-            const encodedFileName = encodeURIComponent(fileName);
+		fileList.forEach(fileName => {
+			const li = document.createElement('li');
+			li.dataset.fileName = fileName;
 
-            // li에 파일명 표시
-            li.textContent = `${fileName}`;
+			// 한글 파일명 인코딩
+			const encodedFileName = encodeURIComponent(fileName);
+			li.textContent = `${fileName}`;
 
-            li.addEventListener('click', function() {
-                document.getElementById('downloadFileName').value = encodedFileName;
-                document.getElementById('frmDownload').submit();
-            });
+			li.addEventListener('click', function() {
+				document.getElementById('downloadFileName').value = encodedFileName;
+				document.getElementById('frmDownload').submit();
+			});
 
-            ulDownload.appendChild(li);
-        });
-    }
+			ulDownload.appendChild(li);
+		});
+	}
 
-    // 페이지 로드 시 파일 목록을 가져오기
-    getDownloadFileList();
+	// 페이지 로드 시 파일 목록을 가져오기
+	getDownloadFileList();
 });
 
 // 인풋 초기화-------------------------------------------------------------------------------------------
@@ -111,20 +110,3 @@ function readURL(input) {
 		}
 	}
 }
-
-
-
-//output 파일명 출력(이전)------------------------------------------------------------------------------------
-/*document.getElementById('file').addEventListener('input', (event) => {
-	const files = event.target.files
-	output.textContent = Array.from(files).map(file => file.name).join('\n')
-})*/
-
-/*다운로드 버튼 클릭 폼 섭밋(이전)---------------------------------------------------------------
-Array.from(document.getElementById('ulDownload').children).forEach(function(li) {
-	li.addEventListener('click', function() {
-		//downloadFileName 인코딩
-	document.getElementById('downloadFileName').value = encodeURIComponent(this.dataset.fileName);
-		document.getElementById('frmDownload').submit();
-	});
-});*/

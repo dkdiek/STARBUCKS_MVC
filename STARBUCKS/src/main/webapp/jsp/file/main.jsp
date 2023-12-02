@@ -33,7 +33,6 @@
 		</div>
 		<!-- 실제 톰캣으로 돌려야 upload 파일로 들어가고 이클립스에서 upload하면 tmp0 폴더에 upload에 저장됨 -->
 		<!-- C:\worksapce_jee\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\STARBUCKS\upload -->
-		</div>
 		<!-- https://velog.io/@virtualplastic/JSP-Servlet-%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C -->
 		<div>
 			<form id="frmUpload" method="post" enctype="multipart/form-data"

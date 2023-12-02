@@ -75,6 +75,9 @@
 			    <form action="<c:url value='/starbucks/menu.star'/>" method="post">
 			        <button type="submit" class="menu-button">메뉴 주문하기</button>
 			    </form>
+			    <form action="<c:url value='/starbucks/orderList.star'/>" method="post">
+			        <button type="submit" class="menu-button">주문 조회하기</button>
+			    </form>
 			    <form action="<c:url value='/file/main.star'/>" method="post">
 			        <button type="submit" class="menu-button">My 클라우드</button>
 			    </form>

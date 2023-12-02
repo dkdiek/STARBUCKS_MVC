@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties resource="mybatis/application.properties">
+  	<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+  </properties>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/><!-- 위에 있으면 properties에서 가져옴 둘다 다르면 아래에있는거로 적용됨 -->
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+  <!-- MyBatis 매퍼 파일의 경로를 지정합니다.
+  여기서는 city_mapper.xml 파일을 사용합니다. 이 파일에는 실제 SQL 쿼리와 매퍼 인터페이스의 연결 정보가 정의되어 있습니다. -->
+    <mapper resource="mybatis/mapper/order_info_mapper.xml"/>
+  </mappers>
+</configuration>

@@ -13,7 +13,7 @@ public class LoginModel {
 		// id가 null이면 nullpointerexception 발생 상수 앞에
 		if ("hongkd".equals(id) && "1234".equals(pw)) {
 			//세션에 username 저장
-			req.getSession().setAttribute("userName", "홍길동");
+			req.getSession().setAttribute("userName", id);
 			CookieMaker.makeCookie(res);
 		} else {
 			req.setAttribute("msg", "아이디 또는 비밀번호를 다시 확인해 주세요");
